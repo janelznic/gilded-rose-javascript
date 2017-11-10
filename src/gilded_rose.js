@@ -14,6 +14,7 @@ export const DEFAULT_ITEM_PROPS = {
   qualityIncrease: true,
   immutableQuality: false,
   creaseQualityEachDay: -1,
+  neverToBeSold: false
 };
 
 /**
@@ -72,18 +73,23 @@ export const ITEM_PROPS = {
  * Get item key from item custom props by name
  * @param {*} name String with item name (title)
  */
-const getItemIdByName = function(name) {
+export const getItemIdByName = function(name) {
   let key;
   for (key in ITEM_PROPS) {
     if (ITEM_PROPS[key].name === name) {
       return key;
     }
   }
+  return false;
 };
 
 export class Item {
   constructor(name, sellIn, quality){
-    let props = ITEM_PROPS[getItemIdByName(name)];
+    let itemId = getItemIdByName(name);
+    if (!itemId) {
+      return false;
+    }
+    let props = ITEM_PROPS[itemId];
 
     // "Sulfuras" never has to be sold
     if (props.neverToBeSold && sellIn < 0) {
@@ -105,6 +111,9 @@ export class Shop {
     for (var i = 0; i < this.items.length; i++) {
       // Get item properties
       let itemId = getItemIdByName(this.items[i].name);
+      if (!itemId) {
+        return false;
+      }
       let props = ITEM_PROPS[itemId];
 
       // Decrease sellIn
@@ -121,7 +130,7 @@ export class Shop {
     // "Sulfuras" never has to be sold
     if (itemProps.neverToBeSold && this.items[i].sellIn <= 0) {
       this.items[i].sellIn = 0;
-      return;
+      return false;
     }
     this.items[i].sellIn--;
   };
