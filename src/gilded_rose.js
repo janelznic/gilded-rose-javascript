@@ -149,7 +149,7 @@ export class Shop {
     let maxQuality = DEFAULT_ITEM_PROPS.maxQuality;
 
     // How much faster is quality creases every day
-    let rapidity = 1;
+    let rapidity = 0;
         rapidity += itemProps.creaseQualityEachDay;
 
     if (specialIncreaseQuality) {
