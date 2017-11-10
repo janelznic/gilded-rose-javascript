@@ -15,7 +15,7 @@ const dayByDay = [
   ],
   [ // day 1
     { name: "+5 Dexterity Vest", sellIn: 9, quality: 19 },
-    { name: "Aged Brie", sellIn: 1, quality: 0 },
+    { name: "Aged Brie", sellIn: 1, quality: 1 },
     { name: "Elixir of the Mongoose", sellIn: 4, quality: 6 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
@@ -26,7 +26,7 @@ const dayByDay = [
   ],
   [ // day 2
     { name: "+5 Dexterity Vest", sellIn: 8, quality: 18 },
-    { name: "Aged Brie", sellIn: 0, quality: 0 },
+    { name: "Aged Brie", sellIn: 0, quality: 2 },
     { name: "Elixir of the Mongoose", sellIn: 3, quality: 5 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
@@ -37,7 +37,7 @@ const dayByDay = [
   ],
   [ // day 3
     { name: "+5 Dexterity Vest", sellIn: 7, quality: 17 },
-    { name: "Aged Brie", sellIn: -1, quality: 0 },
+    { name: "Aged Brie", sellIn: -1, quality: 3 },
     { name: "Elixir of the Mongoose", sellIn: 2, quality: 4 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
@@ -48,7 +48,7 @@ const dayByDay = [
   ],
   [ // day 4
     { name: "+5 Dexterity Vest", sellIn: 6, quality: 16 },
-    { name: "Aged Brie", sellIn: -2, quality: 0 },
+    { name: "Aged Brie", sellIn: -2, quality: 4 },
     { name: "Elixir of the Mongoose", sellIn: 1, quality: 3 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
@@ -59,7 +59,7 @@ const dayByDay = [
   ],
   [ // day 5
     { name: "+5 Dexterity Vest", sellIn: 5, quality: 15 },
-    { name: "Aged Brie", sellIn: -3, quality: 0 },
+    { name: "Aged Brie", sellIn: -3, quality: 5 },
     { name: "Elixir of the Mongoose", sellIn: 0, quality: 2 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
     { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },

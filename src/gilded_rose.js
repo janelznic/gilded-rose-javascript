@@ -11,7 +11,6 @@ export const CONFIG = {
 export const DEFAULT_ITEM_PROPS = {
   minQuality: 0,
   maxQuality: 50,
-  qualityIncrease: true,
   immutableQuality: false,
   creaseQualityEachDay: -1,
   neverToBeSold: false
@@ -23,14 +22,12 @@ export const DEFAULT_ITEM_PROPS = {
 export const ITEM_PROPS = {
   AGED_BRIE: {
     name: 'Aged Brie',
-    qualityIncrease: true,
     immutableQuality: false,
     creaseQualityEachDay: 1, // "Aged Brie" actually increases in Quality the older it gets
     neverToBeSold: false
   },
   BACKSTAGE: {
     name: 'Backstage passes to a TAFKAL80ETC concert',
-    qualityIncrease: true,
     immutableQuality: false,
     creaseQualityEachDay: 1,
     specialIncreaseQuality: [
@@ -41,28 +38,24 @@ export const ITEM_PROPS = {
   },
   SULFURAS: {
     name: 'Sulfuras, Hand of Ragnaros',
-    qualityIncrease: false,
     immutableQuality: true,
     creaseQualityEachDay: 0,
     neverToBeSold: true
   },
   CONJURED: {
     name: 'Conjured Mana Cake',
-    qualityIncrease: false,
     immutableQuality: false,
     creaseQualityEachDay: -2, // "Conjured" items degrade in Quality twice as fast as normal items
     neverToBeSold: false
   },
   DEXTERITY_VEST: {
     name: '+5 Dexterity Vest',
-    qualityIncrease: false,
     immutableQuality: false,
     creaseQualityEachDay: -1,
     neverToBeSold: false
   },
   MONGOOSE_ELIXIR: {
     name: 'Elixir of the Mongoose',
-    qualityIncrease: false,
     immutableQuality: false,
     creaseQualityEachDay: -1,
     neverToBeSold: false
@@ -160,7 +153,7 @@ export class Shop {
 
       // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
       // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
-      for (var j=0, rule, priorityRule; j<specialIncreaseQuality.length; j++) {
+      for (var j=0, rule, priorityRule = false; j<specialIncreaseQuality.length; j++) {
         rule = specialIncreaseQuality[j];
         priorityRule = priorityRule || rule;
         if (sellIn <= rule.lessThanOr) {
@@ -178,7 +171,7 @@ export class Shop {
     }
 
     // Basic setting of quality
-    if (quality > minQuality && quality < maxQuality) {
+    if (quality >= minQuality && quality < maxQuality) {
       quality += rapidity;
     }
 
