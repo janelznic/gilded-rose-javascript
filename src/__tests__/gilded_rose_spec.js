@@ -1,4 +1,4 @@
-import { Shop, Item, CONFIG, DEFAULT_ITEM_PROPS, ITEM_PROPS } from '../gilded_rose';
+import { Shop, Item } from '../gilded_rose';
 
 // Expected values for each day
 const dayByDay = [
@@ -71,34 +71,41 @@ const dayByDay = [
 ];
 
 describe("Gilded Rose", function () {
-    it("item does not exist in item properties list", function () {
-        const gildedRose = new Shop([new Item("foo", 0, 0)]);
-        const items = gildedRose.updateQuality();
-        expect(items).toEqual(false);
-    });
+  it("item does not exist in item properties list", function () {
+    const gildedRose = new Shop([new Item("foo", 0, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items).toEqual(false);
+  });
 
-    const items = [];
-    items.push(new Item('+5 Dexterity Vest', 10, 20));
-    items.push(new Item('Aged Brie', 2, 0));
-    items.push(new Item('Elixir of the Mongoose', 5, 7));
-    items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
-    items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));
-    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
-    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
-    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
-    items.push(new Item('Conjured Mana Cake', 3, 6));
+  // Input data for check
+  const items = [];
+  items.push(new Item('+5 Dexterity Vest', 10, 20));
+  items.push(new Item('Aged Brie', 2, 0));
+  items.push(new Item('Elixir of the Mongoose', 5, 7));
+  items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
+  items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));
+  items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
+  items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
+  items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
+  items.push(new Item('Conjured Mana Cake', 3, 6));
 
-    const gildedRose = new Shop(items);
-    const days = dayByDay.length;
+  const gildedRose = new Shop(items);
+  const days = dayByDay.length;
 
-    for (let i=0; i<days; i++) {
-        for (let j=0; j<gildedRose.items.length; j++) {
-            const item = gildedRose.items[j];
-            it('check sellIn for day ' + i + ', item ' + gildedRose.items[j].name, function () {
-                expect(item.sellIn).toEqual(dayByDay[i][j].sellIn);
-                //expect(item.quality).toEqual(dayByDay[i][j].quality);
-            });
-        }
-        gildedRose.updateQuality();
+  for (let i=0; i<days; i++) {
+    for (let j=0; j<gildedRose.items.length; j++) {
+      const item = gildedRose.items[j];
+      const sellIn = item.sellIn;
+      const quality = item.quality;
+
+      it('check sellIn for day ' + i + ', item ' + gildedRose.items[j].name, function () {
+        expect(sellIn).toEqual(dayByDay[i][j].sellIn);
+      });
+
+      it('check quality for day ' + i + ', item ' + gildedRose.items[j].name, function () {
+        expect(quality).toEqual(dayByDay[i][j].quality);
+      });
     }
+    gildedRose.updateQuality();
+  }
 });
